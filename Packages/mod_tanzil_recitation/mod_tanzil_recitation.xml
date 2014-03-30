@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.1"
+	client="site"
+	method="upgrade">
+	<name>mod_tanzil_recitation</name>
+	<author>Mohammad Hasani Eghtedar</author>
+	<creationDate>October 2013</creationDate>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>m.h.eghtedar@gmail.com</authorEmail>
+	<authorUrl>www.behineweb.com</authorUrl>
+	<version>1.5</version>
+	<description>MOD_TANZIL_RECITATION_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_tanzil_recitation">mod_tanzil_recitation.php</filename>
+		<folder>tmpl</folder>
+		<folder>jplayer</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_tanzil_recitation.xml</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_tanzil_recitation.ini</language>
+		<language tag="en-GB">en-GB.mod_tanzil_recitation.sys.ini</language>
+		<language tag="fa-IR">fa-IR.mod_tanzil_recitation.ini</language>
+		<language tag="fa-IR">fa-IR.mod_tanzil_recitation.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

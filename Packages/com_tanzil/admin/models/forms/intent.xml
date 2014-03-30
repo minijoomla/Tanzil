@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+			name="id"
+			type="text"
+			default="0"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			readonly="true"
+			description="JGLOBAL_FIELD_ID_DESC" />
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="COM_TANZIL_FIELD_TITLE_DESC" 
+			class="input-xxlarge input-large-text"
+			required="true" />
+		<field
+			name="alias"
+			type="text"
+			size="40"
+			label="JFIELD_ALIAS_LABEL"
+			description="COM_TANZIL_FIELD_ALIAS_DESC"
+			hint="JFIELD_ALIAS_PLACEHOLDER" />
+		<field
+			name="state"
+			type="list"
+			label="JSTATUS"
+			description="COM_TANZIL_FIELD_STATE_DESC"
+			class="chzn-color-state"
+			size="1"
+			default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+		<field
+			name="repeat"
+			type="text"
+			filter="INT"
+			class="validate-numeric"
+			pattern="[0-9]+"
+			default="1"
+			label="COM_TANZIL_FIELD_REPEAT_LABEL"
+			description="COM_TANZIL_FIELD_REPEAT_DESC" 
+			required="true" />
+		<field
+			name="created"
+			type="calendar"
+			label="JGLOBAL_FIELD_CREATED_LABEL"
+			description="JGLOBAL_FIELD_CREATED_DESC"
+			size="22"
+			format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc" />
+		<field
+			name="description"
+			type="editor"
+			buttons="true"
+			hide="pagebreak,readmore"
+			filter="JComponentHelper::filterText"
+			label="JGLOBAL_DESCRIPTION"
+			description="COM_TANZIL_FIELD_DESCRIPTION_DESC" />
+		<field name="checked_out" type="hidden" filter="unset" />
+		<field name="checked_out_time" type="hidden" filter="unset" />
+	</fieldset>
+</form>
