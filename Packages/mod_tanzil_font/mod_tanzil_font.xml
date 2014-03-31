@@ -20,11 +20,13 @@
 		<filename>index.html</filename>
 		<filename>mod_tanzil_font.xml</filename>
 	</files>
-	<languages>
-		<language tag="en-GB">en-GB.mod_tanzil_font.ini</language>
-		<language tag="en-GB">en-GB.mod_tanzil_font.sys.ini</language>
-		<language tag="fa-IR">fa-IR.mod_tanzil_font.ini</language>
-		<language tag="fa-IR">fa-IR.mod_tanzil_font.sys.ini</language>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_tanzil_font.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_tanzil_font.sys.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.mod_tanzil_font.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.mod_tanzil_font.sys.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.mod_tanzil_font.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.mod_tanzil_font.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params">
