@@ -7,10 +7,10 @@
 	<name>mod_tanzil_khatm</name>
 	<author>Mohammad Hasani Eghtedar</author>
 	<creationDate>January 2014</creationDate>
-	<copyright>Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2014 - 2014 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>m.h.eghtedar@gmail.com</authorEmail>
-	<authorUrl>www.behineweb.com</authorUrl>
+	<authorUrl>www.mhehm.ir</authorUrl>
 	<version>1.0</version>
 	<description>MOD_TANZIL_KHATM_XML_DESCRIPTION</description>
 	<files>
@@ -20,11 +20,13 @@
 		<filename>index.html</filename>
 		<filename>mod_tanzil_khatm.xml</filename>
 	</files>
-	<languages>
-		<language tag="en-GB">en-GB.mod_tanzil_khatm.ini</language>
-		<language tag="en-GB">en-GB.mod_tanzil_khatm.sys.ini</language>
-		<language tag="fa-IR">fa-IR.mod_tanzil_khatm.ini</language>
-		<language tag="fa-IR">fa-IR.mod_tanzil_khatm.sys.ini</language>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_tanzil_khatm.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_tanzil_khatm.sys.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.mod_tanzil_khatm.ini</language>
+		<language tag="fa-IR">fa-IR/fa-IR.mod_tanzil_khatm.sys.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.mod_tanzil_khatm.ini</language>
+		<language tag="ar-AA">ar-AA/ar-AA.mod_tanzil_khatm.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params">

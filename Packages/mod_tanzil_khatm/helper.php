@@ -15,11 +15,11 @@ defined('_JEXEC') or die;
  * @package     Tanzil.Site
  * @subpackage  mod_tanzil_khatm
  */
-class ModTanzilKhatmHelper
+abstract class ModTanzilKhatmHelper
 {
 	public static function getIntents()
 	{
-		$options = array();
+		$intents = array();
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true)
@@ -29,18 +29,17 @@ class ModTanzilKhatmHelper
 			->join('LEFT', '#__tanzil_intents AS i ON i.id = a.intent_id')
 			->where('a.completed <> 1');
 
-		// Get the options.
 		$db->setQuery($query);
 
 		try
 		{
-			$options = $db->loadObjectList();
+			$intents = $db->loadObjectList();
 		}
 		catch (RuntimeException $e)
 		{
 			JError::raiseWarning(500, $e->getMessage());
 		}
 
-		return $options;
+		return $intents;
 	}
 }
