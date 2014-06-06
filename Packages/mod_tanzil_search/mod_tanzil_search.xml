@@ -30,7 +30,30 @@
 	</languages>
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<fieldset name="site" label="MOD_TANZIL_SEARCH_SITE_FIELDSET_LABEL">
+				<field
+					name="opensearch"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="MOD_TANZIL_SEARCH_FIELD_OPENSEARCH_LABEL"
+					description="MOD_TANZIL_SEARCH_FIELD_OPENSEARCH_DESC"
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="opensearch_title"
+					type="text"
+					label="MOD_TANZIL_SEARCH_FIELD_OPENSEARCH_TEXT_LABEL"
+					description="MOD_TANZIL_SEARCH_FIELD_OPENSEARCH_TEXT_DESC" />
+				<field
+					name="set_itemid"
+					type="menuitem"
+					default="0"
+					label="MOD_TANZIL_SEARCH_FIELD_SETITEMID_LABEL"
+					description="MOD_TANZIL_SEARCH_FIELD_SETITEMID_DESC">
+					<option value="0">MOD_TANZIL_SEARCH_SELECT_MENU_ITEMID</option>
+				</field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field
