@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
 			<form action="<?php echo JRoute::_('index.php');?>" method="post" class="form-search">
 				<div class="input-append row-fluid text-center">
 					<input name="searchword" id="mod-tanzil-search-searchword" type="text" placeholder="<?php echo JText::_('MOD_TANZIL_SEARCH_SEARCH_SITE'); ?>" class="span10 search-query" maxlength="<?php echo $maxlength; ?>" />
-					<button type="button" class="btn hasTooltip" onclick="this.form.submit();" title="<?php echo JText::_('MOD_TANZIL_SEARCH_SEARCH'); ?>"><i class="icon-search"></i></button>
+					<button class="btn hasTooltip" title="<?php echo JText::_('MOD_TANZIL_SEARCH_SEARCH'); ?>"><i class="icon-search"></i></button>
 				</div>
 				<input type="hidden" name="task" value="search" />
 				<input type="hidden" name="option" value="com_search" />
