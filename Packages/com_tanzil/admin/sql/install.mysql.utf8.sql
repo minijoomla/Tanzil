@@ -32,3 +32,20 @@ CREATE TABLE IF NOT EXISTS `#__tanzil_recitations` (
   `users` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Table structure for table `#__tanzil_recitations_periodic`
+--
+
+CREATE TABLE IF NOT EXISTS `#__tanzil_recitations_periodic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(15) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `hizb` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `intent_user_state` (`type`,`user_id`,`state`),
+  UNIQUE KEY `intent_hizb` (`type`,`hizb`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
