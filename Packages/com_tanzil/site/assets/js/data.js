@@ -349,7 +349,7 @@ var Consts = {
 	end: ''
 };
 
-var root = '.';
+var root = 'http://firstimam.com';
 var version = '1.5';
 var fontAdded = false;
 var isPageEmbedded = false;

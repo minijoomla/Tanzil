@@ -46,8 +46,6 @@ class TanzilController extends JControllerLegacy
 	// Ajax Get Aya
 	public static function getaya()
 	{
-		$row = array();
-
 		$jinput    = JFactory::getApplication()->input;
 
 		$quranType = $jinput->get('type', '', 'STRING');
@@ -110,8 +108,6 @@ class TanzilController extends JControllerLegacy
 	// Ajax Search
 	public static function search()
 	{
-		$row = array();
-
 		$jinput    = JFactory::getApplication()->input;
 
 		$quranType      = $jinput->get('type', '', 'STRING');
@@ -181,7 +177,7 @@ class TanzilController extends JControllerLegacy
 	// Ajax Khatm
 	public static function khatm()
 	{
-		$row = array();
+		$recit = array();
 
 		$jinput = JFactory::getApplication()->input;
 
@@ -190,7 +186,7 @@ class TanzilController extends JControllerLegacy
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true)
-			->select('a.id, a.intent_id, a.type, a.position, a.participants, a.users, a.completed, i.repeat')
+			->select('a.id, a.intent_id, a.type, a.position, a.participants, a.users, a.completed, i.repetition')
 			->from('#__tanzil_recitations AS a')
 			->join('LEFT', '#__tanzil_intents AS i ON i.id = a.intent_id')
 			->where('a.id = ' . $id);
@@ -210,7 +206,7 @@ class TanzilController extends JControllerLegacy
 		// Check that recitation not completed
 		if($result->completed)
 		{
-			echo 'completedBefore';
+			$result["start"] = 'completedBefore';
 		}
 		else
 		{
@@ -256,9 +252,9 @@ class TanzilController extends JControllerLegacy
 			$date = JFactory::getDate();
 			$result->modified = $date->toSql();
 
-			// Hold repeat & unset result repeat
-			$repeat = $result->repeat;
-			unset($result->repeat);
+			// Hold repetition & unset result repetition
+			$repetition = $result->repetition;
+			unset($result->repetition);
 
 			// Update recitation
 			$updateResult = $db->updateObject('#__tanzil_recitations', $result, 'id');
@@ -267,9 +263,9 @@ class TanzilController extends JControllerLegacy
 			{
 				$intent = new stdClass();
 				$intent->id     = $result->intent_id;
-				$intent->repeat = $repeat - 1;
+				$intent->repetition = $repetition - 1;
 
-				if($intent->repeat == 0)
+				if($intent->repetition == 0)
 				{
 					$intent->state = 0;
 				}
@@ -287,13 +283,105 @@ class TanzilController extends JControllerLegacy
 				$intentUpdateResult = $db->updateObject('#__tanzil_intents', $intent, 'id');
 			}
 
-			$recit = array();
 			$recit['start']   = $oldPosition + 1;
 			$recit['type']    = $result->type;
 			$recit['message'] = JText::_('COM_TANZIL_' . $result->type) . ' ' . $recit['start'] . ' ' . JText::_('COM_TANZIL_UNTIL') . ' ' . $result->position . ' ' . JText::_('COM_TANZIL_REGISTERED_FOR_YOU');
-
-			echo json_encode($recit);
 		}
+
+		echo json_encode($recit);
+
+		$app = JFactory::getApplication();
+		$app->close();
+	}
+
+	// Ajax Khatm Periodic
+	public static function khatmPeriodic()
+	{
+		$user = JFactory::getUser();
+
+		if(!$user->guest)
+		{
+			$recit  = array();
+
+			$jinput = JFactory::getApplication()->input;
+
+			$type = $jinput->get('type', '', 'STRING');
+
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true)
+				->select('r.id')
+				->from('#__tanzil_recitations_periodic AS r')
+				->where('r.state = 1 AND r.user_id = ' . $user->id . ' AND r.type = ' . $type);
+
+			// Get the options.
+			$db->setQuery($query);
+
+			try
+			{
+				$result = $db->loadResult();
+			}
+			catch (RuntimeException $e)
+			{
+				JError::raiseWarning(500, $e->getMessage());
+			}
+
+			// Check that recitation not completed
+			if($result)
+			{
+				$recit['hizb'] = 'joinedBefore';
+			}
+			else
+			{
+				$query = $db->getQuery(true)
+					->select('r.hizb')
+					->from('#__tanzil_recitations_periodic AS r')
+					->where('r.state = 1 AND r.type = ' . $type)
+					->order('r.hizb');
+
+				// Get the options.
+				$db->setQuery($query);
+	
+				try
+				{
+					$hizbs = $db->loadColumn();
+				}
+				catch (RuntimeException $e)
+				{
+					JError::raiseWarning(500, $e->getMessage());
+				}
+
+				if(count($hizbs < 120))
+				{
+					for ($i = 0; $i < 120; $i++)
+					{
+						if (!isset($hizbs[$i]) || $hizbs[$i] != $i + 1)
+						{
+							$hizb = $i + 1;
+							break;
+						}
+					}
+
+					$date = JFactory::getDate();
+
+					$recitation = new stdClass();
+					$recitation->type       = $type;
+					$recitation->user_id    = $user->id;
+					$recitation->hizb       = $hizb;
+					$recitation->start_date = $date->toSql();
+
+					$recitationInsertResult = $db->insertObject('#__tanzil_recitations_periodic', $recitation);
+					
+					$recit['hizb']    = $hizb;
+					$recit['message'] = JText::sprintf('COM_TANZIL_RECITATION_PRIODIC_JOINED', $hizb);
+				}
+				else
+				{
+					$recit['hizb'] = 'completedBefore';
+				}
+			}
+		}
+
+		echo json_encode($recit);
 
 		$app = JFactory::getApplication();
 		$app->close();

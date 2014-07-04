@@ -107,7 +107,7 @@ class TanzilViewIntents extends JViewLegacy
 		return array(
 			'a.state'  => JText::_('JSTATUS'),
 			'a.title'  => JText::_('JGLOBAL_TITLE'),
-			'a.repeat' => JText::_('COM_TANZIL_FIELD_REPEAT_LABEL'),
+			'a.repetition' => JText::_('COM_TANZIL_FIELD_REPETITION_LABEL'),
 			'a.id'     => JText::_('JGRID_HEADING_ID'),
 		);
 	}

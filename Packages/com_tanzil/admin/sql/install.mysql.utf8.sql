@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `#__tanzil_intents` (
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `repeat` int(10) unsigned NOT NULL DEFAULT '1',
+  `repetition` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_title` (`title`),
   UNIQUE KEY `unq_alias` (`alias`)

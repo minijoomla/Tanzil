@@ -42,7 +42,7 @@ function khatm()
 			},
 			success:function(result)
 			{
-				if(result == "completedBefore")
+				if(result["start"] == "completedBefore")
 				{
 					jQuery("#khatmAlertModal .modal-body").html("' . JText::_('MOD_TANZIL_KHATM_COMPLETED_BEFORE') . '");
 					jQuery("#khatmIntent option[value=khatmIntent]").remove();

@@ -31,8 +31,8 @@
 			<option value="a.state DESC">JSTATUS_DESC</option>
 			<option value="a.title ASC">JGLOBAL_TITLE_ASC</option>
 			<option value="a.title DESC">JGLOBAL_TITLE_DESC</option>
-			<option value="a.repeat ASC">COM_TANZIL_HEADING_REPEAT_ASC</option>
-			<option value="a.repeat DESC">COM_TANZIL_HEADING_REPEAT_DESC</option>
+			<option value="a.repetition ASC">COM_TANZIL_HEADING_REPETITION_ASC</option>
+			<option value="a.repetition DESC">COM_TANZIL_HEADING_REPETITION_DESC</option>
 			<option value="a.created ASC">JDATE_ASC</option>
 			<option value="a.created DESC">JDATE_DESC</option>
 			<option value="a.id ASC">JGRID_HEADING_ID_ASC</option>

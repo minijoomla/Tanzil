@@ -63,7 +63,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 						<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_TANZIL_HEADING_REPEAT', 'a.repeat', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_TANZIL_HEADING_REPETITION', 'a.repetition', $listDirn, $listOrder); ?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JDATE', 'a.created', $listDirn, $listOrder); ?>
@@ -105,7 +105,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 							<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?>
 						</span>
 					</td>
-					<td class="nowrap center hidden-phone"><?php echo (int) $item->repeat; ?></td>
+					<td class="nowrap center hidden-phone"><?php echo (int) $item->repetition; ?></td>
 					<td class="nowrap small hidden-phone">
 						<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
 					</td>

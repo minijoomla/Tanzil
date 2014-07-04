@@ -37,7 +37,7 @@ JHtml::_('behavior.formvalidation');
 		</div>
 		<div class="span3">
 			<fieldset class="form-vertical">
-				<?php echo $this->form->getControlGroup('repeat'); ?>
+				<?php echo $this->form->getControlGroup('repetition'); ?>
 			</fieldset>
 			<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
 		</div>

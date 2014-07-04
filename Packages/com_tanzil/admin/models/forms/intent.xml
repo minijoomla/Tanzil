@@ -34,14 +34,14 @@
 			<option value="0">JUNPUBLISHED</option>
 		</field>
 		<field
-			name="repeat"
+			name="repetition"
 			type="text"
 			filter="INT"
 			class="validate-numeric"
 			pattern="[0-9]+"
 			default="1"
-			label="COM_TANZIL_FIELD_REPEAT_LABEL"
-			description="COM_TANZIL_FIELD_REPEAT_DESC" 
+			label="COM_TANZIL_FIELD_REPETITION_LABEL"
+			description="COM_TANZIL_FIELD_REPETITION_DESC" 
 			required="true" />
 		<field
 			name="created"

@@ -24,7 +24,7 @@ $this->document->addScript(JURI::base(true) . '/components/com_tanzil/assets/js/
 	<li id="search-selector" class="hide"><a href="#search-tab" data-toggle="tab"><?php echo JText::_('COM_TANZIL_SEARCH_RESULTS'); ?></a></li>
 </ul>
 <div class="tab-content" id="main-content">
-	<div id="quran-tab" class="tab-pane fade in active main-tab quran">
+	<div id="quran-tab" class="tab-pane active main-tab quran">
 		<div class="quranPageHeader">
 			<div class="pull-left">
 				<span class="suraName">&nbsp;</span>
@@ -47,7 +47,7 @@ $this->document->addScript(JURI::base(true) . '/components/com_tanzil/assets/js/
 			<span class="pageNumber"> </span>
 			&nbsp; <a class="arrow-link hasTooltip" href="javascript:changePage('right')" title="<?php echo JText::_('COM_TANZIL_PREVIOUS_PAGE'); ?>">&#9658;</a></div>
 	</div>
-	<div id="trans-tab" class="tab-pane fade main-tab quran">
+	<div id="trans-tab" class="tab-pane main-tab quran">
 		<div class="quranPageHeader">
 			<div class="pull-left">
 				<span class="suraName">&nbsp;</span>
@@ -68,7 +68,7 @@ $this->document->addScript(JURI::base(true) . '/components/com_tanzil/assets/js/
 			<span class="pageNumber"> </span>
 			&nbsp; <a class="arrow-link hasTooltip" href="javascript:changePage('right')" title="<?php echo JText::_('COM_TANZIL_PREVIOUS_PAGE'); ?>">&#9658;</a></div>
 	</div>
-	<div id="search-tab" class="tab-pane fade main-tab" style="display: none;">
+	<div id="search-tab" class="tab-pane main-tab" style="display: none;">
 		<div class="searchHeader">
 			<div class="pull-left"><?php echo JText::_('COM_TANZIL_SEARCH'); ?>: <code id="searchPattern"></code> </div>
 			<div id="searchStat" class="pull-right"></div>

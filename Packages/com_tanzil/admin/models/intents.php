@@ -35,7 +35,7 @@ class TanzilModelIntents extends JModelList
 				'checked_out_time', 'a.checked_out_time',
 				'state', 'a.state',
 				'created', 'a.created',
-				'repeat', 'a.repeat',
+				'repetition', 'a.repetition',
 				'description', 'a.description',
 			);
 		}
@@ -99,7 +99,7 @@ class TanzilModelIntents extends JModelList
 		$query->select(
 			$this->getState(
 				'list.select',
-				'a.id, a.title, a.alias, a.checked_out, a.checked_out_time, a.state, a.created, a.repeat'
+				'a.id, a.title, a.alias, a.checked_out, a.checked_out_time, a.state, a.created, a.repetition'
 			)
 		);
 		$query->from($db->quoteName('#__tanzil_intents') . ' AS a');
