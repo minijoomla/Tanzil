@@ -17,25 +17,25 @@ defined('_JEXEC') or die;
  */
 abstract class ModTanzilKhatmPeriodicHelper
 {
-	public static function getHizbStatus()
+	public static function getKhatmStatus()
 	{
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true)
-			->select('r.hizb, r.start_date, r.end_date, r.state')
+			->select('r.`type`, r.hizb, r.start_date, r.end_date')
 			->from('#__tanzil_recitations_periodic r')
-			->where("r.`type` = 'hizb' AND r.user_id = " . JFactory::getUser()->id);
+			->where("r.user_id = " . JFactory::getUser()->id);
 
 		$db->setQuery($query);
 
 		try
 		{
-			$hizbStatus = $db->loadObject();
+			$khatmStatus = $db->loadObjectList();
 		}
 		catch (RuntimeException $e)
 		{
 			JError::raiseWarning(500, $e->getMessage());
 		}
 
-		return $hizbStatus;
+		return $khatmStatus;
 	}
 }

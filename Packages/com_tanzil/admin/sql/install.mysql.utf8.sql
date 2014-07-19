@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS `#__tanzil_intents` (
   UNIQUE KEY `unq_alias` (`alias`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `#__tanzil_recitations`
 --
@@ -27,11 +29,14 @@ CREATE TABLE IF NOT EXISTS `#__tanzil_recitations` (
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `type` varchar(15) NOT NULL,
-  `position` int(11) NOT NULL,
-  `participants` int(11) NOT NULL,
+  `position` int(11) NOT NULL DEFAULT '0',
+  `participants` int(11) NOT NULL DEFAULT '0',
   `users` longtext,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `#__tanzil_recitations_periodic`
@@ -44,8 +49,7 @@ CREATE TABLE IF NOT EXISTS `#__tanzil_recitations_periodic` (
   `hizb` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `intent_user_state` (`type`,`user_id`,`state`),
-  UNIQUE KEY `intent_hizb` (`type`,`hizb`)
+  UNIQUE KEY `type_user` (`type`,`user_id`),
+  UNIQUE KEY `type_hizb` (`type`,`hizb`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

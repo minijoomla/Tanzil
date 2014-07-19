@@ -349,7 +349,7 @@ var Consts = {
 	end: ''
 };
 
-var root = 'http://firstimam.com';
+var root = 'http://localhost/projects/firstimam';
 var version = '1.5';
 var fontAdded = false;
 var isPageEmbedded = false;

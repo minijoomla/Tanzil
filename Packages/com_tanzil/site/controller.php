@@ -294,8 +294,8 @@ class TanzilController extends JControllerLegacy
 		$app->close();
 	}
 
-	// Ajax Khatm Periodic
-	public static function khatmPeriodic()
+	// Ajax Khatm Periodic Join
+	public static function khatmPeriodicJoin()
 	{
 		$user = JFactory::getUser();
 
@@ -311,7 +311,7 @@ class TanzilController extends JControllerLegacy
 			$query = $db->getQuery(true)
 				->select('r.id')
 				->from('#__tanzil_recitations_periodic AS r')
-				->where('r.state = 1 AND r.user_id = ' . $user->id . ' AND r.type = ' . $type);
+				->where('r.user_id = ' . $user->id . ' AND r.type = ' . $db->quote($type));
 
 			// Get the options.
 			$db->setQuery($query);
@@ -335,7 +335,7 @@ class TanzilController extends JControllerLegacy
 				$query = $db->getQuery(true)
 					->select('r.hizb')
 					->from('#__tanzil_recitations_periodic AS r')
-					->where('r.state = 1 AND r.type = ' . $type)
+					->where('r.type = ' . $db->quote($type))
 					->order('r.hizb');
 
 				// Get the options.
@@ -350,9 +350,21 @@ class TanzilController extends JControllerLegacy
 					JError::raiseWarning(500, $e->getMessage());
 				}
 
-				if(count($hizbs < 120))
+				switch ($type)
 				{
-					for ($i = 0; $i < 120; $i++)
+					case 'hizb_day':
+					case 'hizb_week':
+						$amount = 120;
+						break;
+
+					case 'page_day':
+						$amount = 604;
+						break;
+				}
+
+				if(count($hizbs < $amount))
+				{
+					for ($i = 0; $i < $amount; $i++)
 					{
 						if (!isset($hizbs[$i]) || $hizbs[$i] != $i + 1)
 						{
@@ -372,12 +384,75 @@ class TanzilController extends JControllerLegacy
 					$recitationInsertResult = $db->insertObject('#__tanzil_recitations_periodic', $recitation);
 					
 					$recit['hizb']    = $hizb;
-					$recit['message'] = JText::sprintf('COM_TANZIL_RECITATION_PRIODIC_JOINED', $hizb);
+					$typeText = JText::_('COM_TANZIL_KHATM_PERIODIC_' . strtoupper($type));
+					$typeTimeText = JText::_('COM_TANZIL_KHATM_PERIODIC_TIME_' . strtoupper($type));
+					$recit['message'] = JText::sprintf('COM_TANZIL_RECITATION_PRIODIC_JOINED', $typeText, $typeText, $hizb, $typeTimeText, $typeText);
 				}
 				else
 				{
 					$recit['hizb'] = 'completedBefore';
 				}
+			}
+		}
+
+		echo json_encode($recit);
+
+		$app = JFactory::getApplication();
+		$app->close();
+	}
+
+	// Ajax Khatm Periodic Cancel
+	public static function khatmPeriodicCancel()
+	{
+		$user = JFactory::getUser();
+
+		if(!$user->guest)
+		{
+			$recit  = array();
+
+			$jinput = JFactory::getApplication()->input;
+
+			$type = $jinput->get('type', '', 'STRING');
+
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true)
+				->select('r.id')
+				->from('#__tanzil_recitations_periodic AS r')
+				->where('r.user_id = ' . $user->id . ' AND r.type = ' . $db->quote($type));
+
+			// Get the options.
+			$db->setQuery($query);
+
+			try
+			{
+				$result = $db->loadResult();
+			}
+			catch (RuntimeException $e)
+			{
+				JError::raiseWarning(500, $e->getMessage());
+			}
+
+			// Check that recitation not completed
+			if($result)
+			{
+				$query = $db->getQuery(true)
+					->delete($db->quoteName('#__tanzil_recitations_periodic'))
+					->where($db->quoteName('id') . ' = ' . $result);
+ 
+				$db->setQuery($query);
+
+				if($db->execute())
+				{
+					$recit['result'] = 'cancelSuccess';
+				}
+				else
+				{
+					$recit['result'] = 'cancelFail';
+				}
+			}
+			else
+			{
+				$recit['result'] = 'notFound';
 			}
 		}
 
